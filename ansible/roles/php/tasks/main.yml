@@ -1,0 +1,2 @@
+- name: Install php 7.2
+  command: amazon-linux-extras install php7.2

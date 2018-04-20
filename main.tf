@@ -25,12 +25,12 @@ resource null_resource "ansible_web" {
   depends_on = ["aws_instance.live"]
 
   provisioner "local-exec" {
-    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key '${var.aws_pem_location}' -i '${aws_instance.live.public_ip},' ../ansible/master.yml"
+    command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key '${var.aws_pem_location}' -i '${aws_instance.live.public_ip},' ansible/main.yml"
   }
 }
 
 resource "aws_security_group" "https-group" {
-  name = "https-access"
+  name = "https-access-group"
   description = "Allow traffic on port 443 (HTTPS)"
 
   tags = {
@@ -49,7 +49,7 @@ resource "aws_security_group" "https-group" {
 
 
 resource "aws_security_group" "http-group" {
-  name = "http-access"
+  name = "http-access-group"
   description = "Allow traffic on port 80 (HTTP)"
 
   tags = {
@@ -67,7 +67,7 @@ resource "aws_security_group" "http-group" {
 }
 
 resource "aws_security_group" "all-outbound-traffic" {
-  name = "all-outbound-traffic"
+  name = "all-outbound-traffic-group"
   description = "Allow traffic to leave the AWS instance"
 
   tags = {
@@ -85,7 +85,7 @@ resource "aws_security_group" "all-outbound-traffic" {
 }
 
 resource "aws_security_group" "ssh-group" {
-  name = "ssh-access"
+  name = "ssh-access-group"
   description = "Allow traffic to port 22 (SSH)"
 
   tags = {

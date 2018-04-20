@@ -1,0 +1,8 @@
+- name: Install nginx 1.12
+  command: amazon-linux-extras install nginx1.12
+
+- name: Upload default index.php for host
+  copy: src=files/index.php dest=/usr/share/nginx/html/ mode=0644
+
+- name: Start Nginx
+  service: name=nginx enabled=yes state=started
