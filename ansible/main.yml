@@ -5,4 +5,5 @@
   roles:
     - ssh
     - php
+    - composer
     - nginx

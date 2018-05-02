@@ -15,5 +15,5 @@ and you should see the PHP Info page confirming that PHP7.2 was installed.
 
 ## Todo
 - [ ] SSL Certificate with Lets Encrypt
-- [ ] Install Composer
+- [x] Install Composer
 - [ ] Change Nginx web root
