@@ -1,8 +1,16 @@
 - name: Install nginx 1.12
   command: amazon-linux-extras install nginx1.12
 
+- name: Install system nginx config
+  template:
+    src: templates/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+
+- name: Create web root directory
+  file: dest="/var/www/{{ domain }}" state=directory owner=ec2-user group=nginx mode=0755
+
 - name: Upload default index.php for host
-  copy: src=files/index.php dest=/usr/share/nginx/html/ mode=0644
+  copy: src=files/index.php dest="/var/www/{{ domain }}" mode=0644
 
 - name: Start Nginx
   service: name=nginx enabled=yes state=started
