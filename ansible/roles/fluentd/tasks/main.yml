@@ -1,0 +1,25 @@
+- name: Install ruby 2.4
+  command: amazon-linux-extras install ruby2.4
+
+- name: Install TD Agent Client
+  get_url:
+    url: https://toolbelt.treasuredata.com/sh/install-amazon2-td-agent3.sh
+    dest: /tmp/install-amazon2-td-agent3.sh
+    mode: 0755
+
+- name: Execute the command in remote shell
+  shell: /tmp/install-amazon2-td-agent3.sh
+
+- name: Install Logz.io fluentd plugin
+  command: td-agent-gem install fluent-plugin-logzio
+
+- name: Change nginx log permissions
+  command: chown -R td-agent:td-agent /var/log/nginx
+
+- name: Install system td agent config
+  template:
+    src: templates/td-agent.conf.j2
+    dest: /etc/td-agent/td-agent.conf
+
+- name: Start Td agent client
+  command: systemctl start td-agent.service

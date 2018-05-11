@@ -13,10 +13,15 @@ and you should see the PHP Info page confirming that PHP7.2 was installed.
 ### Domain
 To use a domain, you need to change the `roles/nginx/defaults/main.yml` file.
 
+### Fluentd
+Fluentd will be installed by default, this currently tails your nginx access log and pushes the results to Logz.io. This means
+you don't need access to the server and can easily visualise and search the logs on Logz.io platform (Other platforms available).
+
+Sign up for a free account on Logz.io and add your key to `roles/fluentd/defaults/main.yml` and hit the IP address and you'll see the log
+appear within 5 minutes.
+
 ## Destroy
 `terraform destroy`
 
 ## Todo
-- [ ] SSL Certificate with Lets Encrypt
-- [x] Install Composer
-- [x] Change Nginx web root
+- [ ] SSL Certificate (A+ on SSL Labs) with Lets Encrypt
