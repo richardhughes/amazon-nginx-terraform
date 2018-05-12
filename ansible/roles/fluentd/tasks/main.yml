@@ -13,8 +13,12 @@
 - name: Install Logz.io fluentd plugin
   command: td-agent-gem install fluent-plugin-logzio
 
-- name: Change nginx log permissions
-  command: chown -R td-agent:td-agent /var/log/nginx
+- file:
+    path: /var/log/nginx
+    owner: td-agent
+    group: td-agent
+    mode: 0644
+    recurse: yes
 
 - name: Install system td agent config
   template:
