@@ -32,4 +32,4 @@ and you should see the PHP Info page confirming that PHP7.2 was installed.
 `terraform destroy`
 
 ## Todo
-[ ] HTTP to HTTPS redirects
+- HTTP to HTTPS redirects
