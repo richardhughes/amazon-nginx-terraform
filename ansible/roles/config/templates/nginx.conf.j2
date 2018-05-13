@@ -32,13 +32,6 @@ http {
     include /etc/nginx/conf.d/*.conf;
 
     server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-        server_name _;
-        return 301 https://$host$request_uri;
-    }
-
-    server {
         listen 443 ssl http2 default_server;
         listen [::]:443 ssl http2 default_server ipv6only=on;
 
@@ -58,7 +51,9 @@ http {
         add_header X-Frame-Options "SAMEORIGIN";
         add_header X-XSS-Protection "1; mode=block";
         add_header X-Content-Type-Options "nosniff";
+        {% if env == "live" %}
         add_header Strict-Transport-Security "max-age=31536000" always;
+        {% endif %}
 
         index index.php index.html index.htm;
 

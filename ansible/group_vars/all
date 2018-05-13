@@ -1,3 +1,4 @@
+env: staging
 domain:
 logziotoken:
 sslemail:
