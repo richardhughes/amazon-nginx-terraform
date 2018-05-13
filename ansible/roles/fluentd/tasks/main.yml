@@ -17,7 +17,6 @@
     path: /var/log/nginx
     owner: td-agent
     group: td-agent
-    mode: 0644
     recurse: yes
 
 - name: Install system td agent config

@@ -3,8 +3,10 @@
   become: true
 
   roles:
-    - ssh
+    - server
     - php
     - composer
     - nginx
+    - ssl
     - fluentd
+    - config
