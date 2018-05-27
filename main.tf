@@ -23,8 +23,7 @@ resource "aws_instance" "live" {
 
 resource null_resource "ansible_web" {
   depends_on = [
-    "aws_instance.live",
-    "aws_route53_record.api"
+    "aws_instance.live"
   ]
 
   provisioner "local-exec" {
