@@ -22,7 +22,10 @@ resource "aws_instance" "live" {
 }
 
 resource null_resource "ansible_web" {
-  depends_on = ["aws_instance.live"]
+  depends_on = [
+    "aws_instance.live",
+    "aws_route53_record.api"
+  ]
 
   provisioner "local-exec" {
     command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u ec2-user --private-key '${var.aws_pem_location}' -i '${aws_instance.live.public_ip},' ansible/main.yml"

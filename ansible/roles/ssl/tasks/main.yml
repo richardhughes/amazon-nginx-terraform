@@ -12,11 +12,11 @@
       - certbot-nginx
 
 - name: Create letsencrypt certificate
-  shell: certbot certonly --nginx -n -w "/var/www/{{ domain }}" -m '{{ sslemail }}' --agree-tos -d "{{ domain }}"
+  shell: certbot certonly --webroot -n -w "/usr/share/nginx/html" -m '{{ sslemail }}' --agree-tos -d "{{ domain }}"
   when: env == "live"
 
 - name: Create letsencrypt certificate
-  shell: certbot certonly --nginx -n -w "/var/www/{{ domain }}" -m '{{ sslemail }}' --staging --agree-tos -d "{{ domain }}"
+  shell: certbot certonly --webroot -n -w "/usr/share/nginx/html" -m '{{ sslemail }}' --staging --agree-tos -d "{{ domain }}"
   when: env == "staging"
 
 - name: Add letsencrypt cronjob for cert renewal

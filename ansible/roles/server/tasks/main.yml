@@ -1,5 +1,10 @@
 - name: Wait for system (SSH) to become reachable
   wait_for_connection:
 
+- name: upgrade all packages
+  yum:
+    name: '*'
+    state: latest
+
 - name: Create web root directory
   file: dest="/var/www/{{ domain }}" state=directory owner=ec2-user group=ec2-user mode=0755

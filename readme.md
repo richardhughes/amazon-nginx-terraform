@@ -34,6 +34,6 @@ and you should see the PHP Info page confirming that PHP7.2 was installed.
 ## Todo
 - [ ] Update/upgrade server
 - [ ] Secure server
-- [ ] HTTP to HTTPS redirects
+- [x] HTTP to HTTPS redirects
 - [ ] Install Fail2Ban for SSH and Nginx
 - [ ] Setup Collectd to send logs to Grafana

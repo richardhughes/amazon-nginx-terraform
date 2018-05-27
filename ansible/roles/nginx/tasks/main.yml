@@ -4,3 +4,5 @@
 - name: Upload default index.php for host
   copy: src=files/index.php dest="/var/www/{{ domain }}" mode=0644
 
+- name: Start Nginx
+  service: name=nginx enabled=yes state=started
