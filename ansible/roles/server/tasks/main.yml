@@ -1,6 +1,11 @@
 - name: Wait for system (SSH) to become reachable
   wait_for_connection:
 
+- name: Disallow Root login
+  lineinfile: dest=/etc/ssh/sshd_config regexp="{{ item.regexp }}" line="{{ item.line }}" backup=yes
+  with_items:
+    - { regexp: "PermitRootLogin", line: "PermitRootLogin no" }
+
 - name: upgrade all packages
   yum:
     name: '*'
