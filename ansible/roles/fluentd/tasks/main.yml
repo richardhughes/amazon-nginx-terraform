@@ -26,3 +26,9 @@
 
 - name: Start Td agent client
   command: systemctl start td-agent.service
+
+- name: configure nginx log rotate
+  lineinfile: dest=/etc/logrotate.d/nginx regexp="{{ item.regexp }}" line="{{ item.line }}" backup=yes
+  with_items:
+    - { regexp: "create 0644", line: "create 0644 td-agent td-agent" }
+    - { regexp: "/bin/kill -USR1", line: "service nginx reload" }
